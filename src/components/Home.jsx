@@ -29,7 +29,10 @@ const Home = () => {
 
     loadUsers();
   }, [page]);
-
+  const deleteItem = (data) => {
+    const updatedData = users.filter((i) => i.id !== data);
+    setUsers(updatedData);
+  };
   return (
     <div className="App">
       <CustomNavbar />
@@ -44,6 +47,7 @@ const Home = () => {
                   description={data.description}
                   image={data.image_url}
                   name={data.name}
+                  deleteItem={() => deleteItem(data.id)}
                 />
               </Grid>
             ))}

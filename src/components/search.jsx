@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useRef } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import InputBase from "@material-ui/core/InputBase";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
+import { searchBeers } from "./API";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,21 +30,27 @@ const useStyles = makeStyles((theme) => ({
 
 const CustomSearch = () => {
   const classes = useStyles();
-
+  const keyword = useRef(null);
+  const getKeyword = (v) => {
+    console.log(v);
+    searchBeers(v);
+  };
   return (
     <Paper style={{ margin: "25px" }} component="form" className={classes.root}>
       <InputBase
         className={classes.input}
+        ref={keyword}
+        name={"searchKeyword"}
         placeholder="Search for Beer..."
         inputProps={{ "aria-label": "search google maps" }}
       />
       <Divider className={classes.divider} orientation="vertical" />
       <IconButton
-        type="submit"
+        type="text"
         className={classes.iconButton}
         aria-label="search"
       >
-        <SearchIcon />
+        <SearchIcon onClick={(e) => getKeyword(e.targe.value)} />
       </IconButton>
     </Paper>
   );

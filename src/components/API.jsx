@@ -5,3 +5,10 @@ export const getBeers = async (page) => {
   );
   return beers.data;
 };
+
+export const searchBeers = async (keyword) => {
+  const beers = await axios(
+    `https://api.punkapi.com/v2/beers?beer_name=${keyword}`
+  );
+  return console.log(beers.data);
+};

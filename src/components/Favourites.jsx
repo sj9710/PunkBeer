@@ -2,7 +2,6 @@ import React from "react";
 import CustomNavbar from "./navbar";
 import BeerCard from "./beerCard";
 import Grid from "@material-ui/core/Grid";
-import { CustomGrid } from "./App.styles";
 
 const Favourite = () => {
   return (

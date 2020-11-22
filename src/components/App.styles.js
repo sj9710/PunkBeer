@@ -2,8 +2,7 @@ import styled from "styled-components";
 
 export const Content = styled.div`
   display: flex;
-  grid-template-columns: 1fr 1fr;
-  width: 80%;
+  width: auto;
   height: 750px;
   overflow: auto;
 `;

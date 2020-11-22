@@ -11,8 +11,8 @@ import EditIcon from "@material-ui/icons/Edit";
 
 const useStyles = makeStyles(() => ({
   root: {
-    // maxWidth: "auto",
-    // maxHeight: "auto",
+    maxWidth: "auto",
+    maxHeight: "auto",
   },
   media: {
     height: 0,
@@ -30,7 +30,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const BeerCard = ({ description, image, name }) => {
+const BeerCard = ({ key, description, image, name, deleteItem }) => {
   const classes = useStyles();
   const favData = { id: name, descp: description, img: image };
   const [color, setColor] = React.useState("");
@@ -49,9 +49,12 @@ const BeerCard = ({ description, image, name }) => {
       localStorage.setItem(favData.id, JSON.stringify(favData));
     }
   };
+  const onClick = (key) => {
+    deleteItem(key);
+  };
 
   return (
-    <Card>
+    <Card className={classes.root}>
       <CardHeader
         avatar={
           <img
@@ -70,15 +73,15 @@ const BeerCard = ({ description, image, name }) => {
           <FavoriteIcon style={{ color: color }} onClick={favoriteItem} />
         </IconButton>
         <Divider orientation="vertical" flexItem />
-        <IconButton aria-label="share">
+        <IconButton>
           <EditIcon />
         </IconButton>
         <Divider orientation="vertical" flexItem />
-        <IconButton aria-label="share">
+        <IconButton onClick={() => onClick(key)}>
           <DeleteIcon />
         </IconButton>
       </CardActions>
     </Card>
   );
 };
-export default BeerCard;
+export default React.memo(BeerCard);
