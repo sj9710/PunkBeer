@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import InputBase from "@material-ui/core/InputBase";
@@ -30,27 +30,26 @@ const useStyles = makeStyles((theme) => ({
 
 const CustomSearch = () => {
   const classes = useStyles();
-  const keyword = useRef(null);
-  const getKeyword = (v) => {
-    console.log(v);
-    searchBeers(v);
+  const [keyword, setKeyword] = useState("");
+  const submit = (e) => {
+    console.log(keyword);
+    searchBeers(keyword);
   };
   return (
     <Paper style={{ margin: "25px" }} component="form" className={classes.root}>
       <InputBase
         className={classes.input}
-        ref={keyword}
-        name={"searchKeyword"}
         placeholder="Search for Beer..."
         inputProps={{ "aria-label": "search google maps" }}
+        onChange={(e) => setKeyword(e.target.value)}
       />
       <Divider className={classes.divider} orientation="vertical" />
       <IconButton
-        type="text"
+        onClick={submit}
         className={classes.iconButton}
         aria-label="search"
       >
-        <SearchIcon onClick={(e) => getKeyword(e.targe.value)} />
+        <SearchIcon />
       </IconButton>
     </Paper>
   );
