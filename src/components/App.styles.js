@@ -8,7 +8,7 @@ export const Content = styled.div`
 `;
 
 export const Loading = styled.div`
-  width: 200px;
+  width: 190px;
   margin: 20px auto;
   text-align: center;
 `;
